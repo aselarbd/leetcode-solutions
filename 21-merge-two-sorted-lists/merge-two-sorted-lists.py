@@ -12,28 +12,18 @@ class Solution:
         if list2 is None:
             return list1
 
-        p1, p2, head = list1, list2, ListNode()
-        prev = head
+        dummy = node = ListNode()
 
-        while p1 and p2:
-
-            if p1.val < p2.val:
-                curr = ListNode(val=p1.val)
-                
-                p1 = p1.next
+        while list1 and list2:
+            if list1.val < list2.val:
+                node.next = list1
+                list1 = list1.next
             else:
-                curr = ListNode(val=p2.val)
-                p2 = p2.next
-
-            prev.next = curr
-            prev = curr
+                node.next = list2
+                list2 = list2.next
         
-        if p1:
-            prev.next = p1
-        elif p2:
-            prev.next = p2
+            node = node.next
         
-        return head.next
-
-
+        node.next = list1 or list2
         
+        return dummy.next
