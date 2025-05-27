@@ -30,13 +30,10 @@ class Solution:
         front, back = head, prev
 
         while back:
-            front_tmp = front.next
-            back_tmp = back.next
+            front_tmp, back_tmp = front.next, back.next
+
             front.next = back
             back.next = front_tmp
-            front = front_tmp
-            back = back_tmp
-        
-                
 
+            front, back = front_tmp, back_tmp
         
