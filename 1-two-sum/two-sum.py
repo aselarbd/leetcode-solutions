@@ -1,11 +1,11 @@
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        nums_ind = {}
+        locations = {}
 
         for i,n in enumerate(nums):
-            nums_ind[n]=i
+            rem = target - n
+            if rem in locations:
+                return [i, locations[rem]]
+            else:
+                locations[n] = i
         
-        for i,n in enumerate(nums):
-            left = target - n
-            if left in nums_ind and i != nums_ind[left]:
-                return [i,nums_ind[left]]
