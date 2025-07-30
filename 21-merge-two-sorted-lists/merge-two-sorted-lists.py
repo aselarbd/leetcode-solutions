@@ -18,22 +18,12 @@ class Solution:
             if a.val < b.val:
                 curr.next = a
                 a = a.next
-                curr = curr.next
-            elif a.val > b.val:
-                curr.next = b
-                b = b.next
-                curr = curr.next
             else:
-                curr.next = a
-                a = a.next
-                curr = curr.next
                 curr.next = b
                 b = b.next
-                curr = curr.next
-        if a:
-            curr.next = a
-        if b:
-            curr.next = b
+            curr = curr.next
+ 
+        curr.next = a or b
         
         return head.next
 
