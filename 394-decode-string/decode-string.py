@@ -6,21 +6,17 @@ class Solution:
         for ch in s:
             if ch ==']':
 
-                temp_str = []
-                temp_int = []
-
+                substr = ""
                 while stack and stack[-1] != '[':
-                    temp_str.append(stack.pop())
+                    substr = stack.pop() + substr
                 stack.pop()
 
+                k = ""
                 while stack and stack[-1].isdigit():
-                     temp_int.append(stack.pop())
+                     k = stack.pop() + k
 
-                count = int(''.join(temp_int[::-1]))
-
-                for t in temp_str[::-1]*count:
-                    stack.append(t)
-
+                stack.append(substr * int(k))
+                
             else:
                 stack.append(ch)
 
