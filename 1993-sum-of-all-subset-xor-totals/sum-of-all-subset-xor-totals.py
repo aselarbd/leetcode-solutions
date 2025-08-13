@@ -1,13 +1,24 @@
 class Solution:
     def subsetXORSum(self, nums: List[int]) -> int:
 
-        def dfs(i, total) -> int:
+        res = 0
+
+        def dfs(start, ans):
+            if start == len(nums):
+                nonlocal res
+                x = 0
+                for a in ans:
+                    x ^= a
+                res += x
+
+                return
             
-            if i == len(nums):
-                return total
+            ans.append(nums[start])
+            dfs(start+1, ans)
+            ans.pop()
 
-            return dfs(i+1, total ^ nums[i]) + dfs(i+1, total)
+            dfs(start+1, ans)
 
-        return dfs(0,0)
-        
-        
+        dfs(0,[])
+
+        return res
