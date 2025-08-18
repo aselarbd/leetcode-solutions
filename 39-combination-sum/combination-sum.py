@@ -3,22 +3,24 @@ class Solution:
 
         res = []
 
-        def dfs(candidates, reaminder, ans):
+        def dfs(start, tot, ans):
 
-            if reaminder == 0:
+            if tot == target:
                 res.append(ans[:])
                 return
+            
+            if start == len(candidates) or tot > target:
+                return
 
-            for i,c in enumerate(candidates):
-                if i >0 and candidates[i-1] == c: continue
+            # Add element
+            ans.append(candidates[start])
+            dfs(start, tot+candidates[start], ans)
+            ans.pop()
 
-                if reaminder - c >= 0:
-                    ans.append(c)
-                    dfs(candidates[i:], reaminder - c, ans)
-                    ans.pop()
+            # Not add element
+            dfs(start+1, tot, ans)
 
-        candidates.sort()
-        dfs(candidates, target, [])
+        dfs(0,0,[])
 
         return res
         
