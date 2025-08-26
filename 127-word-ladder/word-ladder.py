@@ -15,14 +15,8 @@ class Solution:
         wordList.append(beginWord)
         for word in wordList:
             for j in range(len(word)):
-                pattern = word[:j] + "*" + word[j + 1 :]
+                pattern = word[:j] + "*" + word[j+1:]
                 word_map[pattern].append(word)
-
-
-                # diff_count = sum(c1 != c2 for c1, c2 in zip(word1, word2))
-
-                # if diff_count==1:
-                #     word_map[word1].append(word2)
 
         queue, visted, i =  deque([(beginWord,0)]), set(beginWord), 0
 
